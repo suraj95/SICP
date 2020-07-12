@@ -29,7 +29,7 @@ The dialect of Lisp used in this book is called Scheme. You should not use Commo
 
 * And that's it! Now you should be able to use MIT Scheme in your terminal by typing "scheme" into the command line
 
-![alt text](./images/screenshot.png)
+![alt text](./images/screenshot_new.png)
 
 # Important links
 
