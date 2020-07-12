@@ -11,19 +11,21 @@ If Lisp is not a mainstream language, why are we using it as the framework for o
 
 # Downloading and setting up our Lisp Interpreter
 
+![alt text](./images/scheme.png)
+
 The dialect of Lisp used in this book is called Scheme. You should not use Common Lisp if you want to have a good experience with SICP. To download and setup Scheme, follow these instuctions:
 
-⋅⋅* Visit the GNU [website](https://www.gnu.org/software/mit-scheme/) and download the binary depending on which architecture your system uses (32 bit or 64 bit). At the time of this writing, the latest stable release is 10.1.11
+* Visit the GNU [website](https://www.gnu.org/software/mit-scheme/) and download the binary depending on which architecture your system uses (32 bit or 64 bit). At the time of this writing, the latest stable release is 10.1.11
 
-⋅⋅* Install the Binary and allow macOS to run application from unidentified developers
+* Install the Binary and allow macOS to run application from unidentified developers
 
-⋅⋅* Open terminal and type the following command:
+* Open terminal and type the following command:
 
-	sudo ln -s /Applications/MIT\:GNU\ Scheme\ 10.1.11.app/Contents/Resources /usr/local/lib/mit-scheme-x86-64
+		sudo ln -s /Applications/MIT\:GNU\ Scheme\ 10.1.11.app/Contents/Resources /usr/local/lib/mit-scheme-x86-64
 
-⋅⋅* Then enter your administrator password and run this command
+* Then enter your administrator password and run this command
 
-	sudo ln -s /usr/local/lib/mit-scheme-x86-64/mit-scheme /usr/local/bin/scheme
+		sudo ln -s /usr/local/lib/mit-scheme-x86-64/mit-scheme /usr/local/bin/scheme
 
 
 # Important links
