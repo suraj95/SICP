@@ -31,6 +31,11 @@ The dialect of Lisp used in this book is called Scheme. You should not use Commo
 
 ![alt text](./images/screenshot_new.png)
 
+* There is no proper Scheme extension. The most common file extension for Scheme programs is .scm which we can read using the load procedure.
+
+		1 ]=> (load "source.scm")
+
+
 # Important links
 
 [MIT/GNU Scheme](https://www.gnu.org/software/mit-scheme/)
@@ -38,5 +43,7 @@ The dialect of Lisp used in this book is called Scheme. You should not use Commo
 [Can I use Common Lisp for SICP?](https://stackoverflow.com/questions/1159208/can-i-use-common-lisp-for-sicp-or-is-scheme-the-only-option)
 
 [How to install mit-scheme on Mac](https://stackoverflow.com/questions/12322434/how-to-install-mit-scheme-on-mac)
+
+[Running Scheme](http://www.eecs.ucf.edu/~leavens/ui54/WWW/scheme.shtml)
 
 
