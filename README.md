@@ -15,7 +15,7 @@ If Lisp is not a mainstream language, why are we using it as the framework for o
 
 The dialect of Lisp used in this book is called Scheme. You should not use Common Lisp if you want to have a good experience with SICP. To download and setup Scheme, follow these instuctions:
 
-* Visit the GNU [website](https://www.gnu.org/software/mit-scheme/) and download the binary depending on which architecture your system uses (32 bit or 64 bit). At the time of this writing, the latest stable release is 10.1.11
+* Visit the [MIT/GNU website](https://www.gnu.org/software/mit-scheme/) and download the binary depending on which architecture your system uses (32 bit or 64 bit). At the time of this writing, the latest stable release is 10.1.11
 
 * Install the Binary and allow macOS to run application from unidentified developers
 
@@ -30,10 +30,10 @@ The dialect of Lisp used in this book is called Scheme. You should not use Commo
 
 # Important links
 
-https://stackoverflow.com/questions/1159208/can-i-use-common-lisp-for-sicp-or-is-scheme-the-only-option
+[MIT/GNU Scheme](https://www.gnu.org/software/mit-scheme/)
 
-https://www.gnu.org/software/mit-scheme/
+[Can I use Common Lisp for SICP?](https://stackoverflow.com/questions/1159208/can-i-use-common-lisp-for-sicp-or-is-scheme-the-only-option)
 
-https://stackoverflow.com/questions/12322434/how-to-install-mit-scheme-on-mac
+[How to install mit-scheme on Mac](https://stackoverflow.com/questions/12322434/how-to-install-mit-scheme-on-mac)
 
 
