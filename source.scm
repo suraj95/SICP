@@ -27,3 +27,31 @@
 
 (f 5) ;136
 
+(define (abs x) 
+	(cond ((> x 0) x)
+		((= x 0) 0)
+		((< x 0) (- x))))
+
+(if (and (> b a) (< b (* a b)))
+	b 
+	a) ;4
+
+(* (cond ((> a b) a)
+	((< a b) b)
+	(else -1)) 
+(+ a 1)) ;19
+
+
+; it's a good idea to split the problem in subproblems which are easier to solve 
+
+(define (sum-largest-squares a b c)
+	(if (>= a b)
+      (if (>= b c)
+          (sum-of-squares a b)
+          (sum-of-squares a c))
+      (if (>= a c)
+          (sum-of-squares b a)
+          (sum-of-squares b c))))
+		
+
+
