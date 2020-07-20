@@ -48,6 +48,29 @@
 		1 
 		(* n (factorial (- n 1)))))
 
+(define (fib n) (cond ((= n 0) 0)
+	((= n 1) 1)
+	(else (+	(fib (- n 1)) 
+			(fib (- n 2))))))
 
+; use fib for tree recursive procedure and fib-i for iterative procedure
 
+(define (fib-i n) 
+	(fib-iter 1 0 n)) 
+(define 
+	(fib-iter a b count) 
+	(if (= count 0) 
+	b (fib-iter 
+	(+ a b) a (- count 1))))
+
+(define (expt b n)
+	(if (= n 0) 1 
+	(* b (expt b (- n 1)))))
+
+(define (even? n) 
+	(= (remainder n 2) 0))
+
+(define (gcd a b)
+	(if (= b 0)
+	a (gcd b (remainder a b))))
 
