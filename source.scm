@@ -14,6 +14,8 @@
 (* (+ 2 (* 4 6)) (+ 3 5 7)) ;390
 
 (define (square x) (* x x))
+(define (cube x) (* x x x))
+(define (inc n) (+ n 1))
 
 (square 2) ;21
 (square 21) ;441
@@ -32,7 +34,7 @@
 		((= x 0) 0)
 		((< x 0) (- x))))
 
-; it's a good idea to split the problem in subproblems which are easier to solve 
+; It's a good idea to split the problem in subproblems which are easier to solve 
 
 (define (sum-largest-squares a b c)
 	(if (>= a b)
@@ -53,7 +55,7 @@
 	(else (+	(fib (- n 1)) 
 			(fib (- n 2))))))
 
-; use fib for tree recursive procedure and fib-i for iterative procedure
+; Use fib for tree recursive procedure and fib-i for iterative procedure
 
 (define (fib-i n) 
 	(fib-iter 1 0 n)) 
@@ -73,4 +75,54 @@
 (define (gcd a b)
 	(if (= b 0)
 	a (gcd b (remainder a b))))
+
+; Find the smallest divisor of a number
+
+(define (smallest-divisor n)
+  (find-divisor n 2))
+
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n)
+         n)
+        ((divides? test-divisor n)
+         test-divisor)
+        (else (find-divisor
+               n
+               (+ test-divisor 1)))))
+
+(define (divides? a b)
+  (= (remainder b a) 0))
+
+
+; f(x,y) = x(1 + xy) 2 + y(1 − y) + (1 + xy)(1 − y)  which we could also express as
+; a = 1 + xy, b = 1 − y, f(x,y) = xa2 + yb + ab
+
+
+; using helper function
+(define (f x y)
+	(define (f-helper a b) 
+		(+ (* x (square a)) 
+			(* y b) 
+			(* a b))) 
+	(f-helper (+ 1 (* x y)) 
+		(- 1 y)))
+
+; using lambda
+(define (f x y) 
+	((lambda (a b)
+		(+ 	(* x (square a)) 
+			(* y b) 
+			(* a b))) 
+		(+ 1 (* x y)) 
+		(- 1 y)))
+
+; using let
+(define (f x y)
+	(let 	((a (+ 1 (* x y))) 
+		(b (- 1 y))) 
+		(+ (* x (square a)) 
+		(* y b) 
+		(* a b))))
+
+
 
