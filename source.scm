@@ -94,8 +94,8 @@
   (= (remainder b a) 0))
 
 
-; f(x,y) = x(1 + xy) 2 + y(1 − y) + (1 + xy)(1 − y)  which we could also express as
-; a = 1 + xy, b = 1 − y, f(x,y) = xa2 + yb + ab
+; f(x,y) = x(1 + xy)^2 + y(1 − y) + (1 + xy)(1 − y)  which we could also express as
+; a = 1 + xy, b = 1 − y, f(x,y) = xa^2 + yb + ab
 
 
 ; using helper function
@@ -124,5 +124,24 @@
 		(* y b) 
 		(* a b))))
 
+; let allows one to bind variables as locally as possible to where they are to be used.
 
+(define x 5)
+
+(+ (let ((x 3))
+	(+ x (* x 10))) 
+	x)
+
+; value of x is defined 5, but the value of x in the body is 3 and
+; and therefor value of the expression here is 38
+
+
+; A let is a lambda. The procedure below—
+
+(let ((x 1))
+  body)
+
+; can be translated into
+
+((lambda (x) body) 1)
 
