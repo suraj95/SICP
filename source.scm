@@ -145,3 +145,47 @@
 
 ((lambda (x) body) 1)
 
+; This procedure presents a linear combination ax + by
+
+(define (linear-combination a b x y) 
+	(+ (* a x) (* b y)))
+
+; We can also express this idea for a more general form-- for rational numbers, complex numbers, 
+; polynomials, or whatever.
+
+(define (linear-combination a b x y) 
+	(add (mul a x) (mul b y)))
+
+; where add and mul are not the primitive procedures + and * but rather more complex things 
+; that will perform the appropriate operations for whatever kinds of data we pass in as the 
+; arguments a, b, x, and y. If not defined, they will give error.
+
+; n1/d1 + n2/d2 = (n1d2 + n2d1)/d1d2
+
+(define (add-rat x y) 
+	(make-rat 
+		(+ 	(* (numer x) (denom y)) (* (numer y) (denom x))) 
+			(* (denom x) (denom y))))
+
+
+; To enable us to implement the concrete level of our data abstraction, our language provides a 
+; compound structure called a pair, which can be constructed with the primitive procedure cons. 
+
+(define x (cons 1 2)) 
+
+(car x) ;1 
+(cdr x) ;2
+
+; Given a pair, we can extract the parts using the primitive procedures car and cdr.
+
+(define x (cons 1 2)) 
+(define y (cons 3 4)) 
+(define z (cons x y)) 
+
+(car (car z)) ; 1 
+(car (cdr z)) ; 3
+
+; Data objects constructed from pairs are called list-structured data.
+
+
+
