@@ -138,12 +138,12 @@
 
 ; A let is a lambda. The procedure below—
 
-(let ((x 1))
-  body)
+;(let ((x 1))
+;  body)
 
 ; can be translated into
 
-((lambda (x) body) 1)
+; ((lambda (x) body) 1)
 
 ; This procedure presents a linear combination ax + by
 
@@ -186,6 +186,3 @@
 (car (cdr z)) ; 3
 
 ; Data objects constructed from pairs are called list-structured data.
-
-
-
