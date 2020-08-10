@@ -35,9 +35,9 @@ The dialect of Lisp used in this book is called Scheme. You should not use Commo
 
 		1 ]=> (load "rational.scm")
 
-![alt text](./images/rational.png)
+We deﬁned the rational-number operations in terms of a constructor make-rat and selectors numer and denom. In general, the underlying idea of data abstraction is to identify for each type of data object a basic set of operations in terms of which all manipulations of data objects of that type will be expressed, and then to use only those operations in manipulating the data. **The horizontal lines represent abstraction barriers that isolate diﬀerent “levels” of the system.** At each level, the barrier separates the programs (above) that use the data abstraction from the programs (below) that implement the data abstraction. The horizontal lines represent abstraction barriers that isolate diﬀerent “levels” of the system. At each level, the barrier separates the programs (above) that use the data abstraction from the programs (below) that implement the data abstraction. 
 
-We deﬁned the rational-number operations in terms of a constructor make-rat and selectors numer and denom. In general, the underlying idea of data abstraction is to identify for each type of data object a basic set of operations in terms of which all manipulations of data objects of that type will be expressed, and then to use only those operations in manipulating the data. **The horizontal lines represent abstraction barriers that isolate diﬀerent “levels” of the system.** At each level, the barrier separates the programs (above) that use the data abstraction from the programs (below) that implement the data abstraction.
+![alt text](./images/rational.png)
 
 # Important links
 
