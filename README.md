@@ -43,6 +43,9 @@ As we have seen, pairs provide a primitive “glue” that we can use to constru
 
 ![alt text](./images/box-and-pointer.png)
 
+The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. **We refer to this ability as the closure property of cons.** In general, an operation for combining data objects satisﬁes the closure property if the results of combining things with that operation can themselves be combined using the same operation. Closure is the key to power in any means of combination because it permits us to create hierarchical structures—structures made up of parts, which themselves are made up of parts, and so on.
+
+
 # Important links
 
 [MIT/GNU Scheme](https://www.gnu.org/software/mit-scheme/)
