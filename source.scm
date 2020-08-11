@@ -186,3 +186,62 @@
 (car (cdr z)) ; 3
 
 ; Data objects constructed from pairs are called list-structured data.
+
+(define one-through-four (list 1 2 3 4)) 
+one-through-four ;(1 2 3 4)
+
+; We can think of car as selecting the ﬁrst item in the list, 
+; and of cdr as selecting the sublist consisting of all but the ﬁrst item.
+
+(car one-through-four) ;1 
+(cdr one-through-four) ;(2 3 4) 
+(car (cdr one-through-four)) ;2 
+(cons 10 one-through-four) ;(10 1 2 3 4) 
+(cons 5 one-through-four) ;(5 1 2 3 4) 
+
+; The procedure list-ref takes as arguments a list and a number n and returns the n-th item of the list.
+
+(define (list-ref items n)
+	(if (= n 0)
+		(car items) (list-ref (cdr items) (- n 1)))) 
+
+(define squares (list 1 4 9 16 25)) (list-ref squares 3) ;16
+
+; The procedure length, which returns the number of items in a list, illustrates this typical pattern of use:
+
+(define (length items) (if (null? items) 0 (+ 1 (length (cdr items))))) 
+
+(define odds (list 1 3 5 7))
+
+(length odds);4
+
+(define squares (list 1 4 9 16 25)) 
+
+(length squares);5
+
+; To append lists, if list1 is the empty list, then the result is just list2.
+; Otherwise, append the cdr of list1 and list2, and cons the car of list1 onto the result:
+
+(define (append list1 list2)
+    (if (null? list1) 
+    list2 
+    (cons (car list1) (append (cdr list1) list2))))
+
+(append squares odds) ;(1 4 9 16 25 1 3 5 7)
+(append odds squares) ;(1 3 5 7 1 4 9 16 25)
+
+; Exercise 2.18: Deﬁne a procedure reverse that takes a list as argument and returns a 
+; list of the same elements in reverse order:
+
+(define (reverse items)
+	(define (reverse-helper items reversed-items)
+		(if (null? items)
+		reversed-items
+		(reverse-helper (cdr items) (cons (car items) reversed-items))))
+	(reverse-helper items ())) ; empty list represented with ()
+
+
+(reverse (list 1 4 9 16 25)) ;(25 16 9 4 1)
+
+
+
