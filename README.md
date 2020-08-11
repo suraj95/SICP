@@ -39,6 +39,10 @@ We deﬁned the rational-number operations in terms of a constructor make-rat an
 
 ![alt text](./images/rational.png)
 
+As we have seen, pairs provide a primitive “glue” that we can use to construct compound data objects. Figure 2.2 shows a standard way to visualize a pair—in this case, the pair formed by (cons 1 2). In this representation, which is called box-and-pointer notation, each object is shown as a pointer to a box. For example, the box for a number contains a numeral. The box for a pair is actually a double box, the left part containing (a pointer to) the car of the pair and the right part containing the cdr.
+
+![alt text](./images/box-and-pointer.png)
+
 # Important links
 
 [MIT/GNU Scheme](https://www.gnu.org/software/mit-scheme/)
