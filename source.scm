@@ -236,12 +236,35 @@ one-through-four ;(1 2 3 4)
 (define (reverse items)
 	(define (reverse-helper items reversed-items)
 		(if (null? items)
-		reversed-items
-		(reverse-helper (cdr items) (cons (car items) reversed-items))))
+			reversed-items
+			(reverse-helper (cdr items) (cons (car items) reversed-items))))
 	(reverse-helper items ())) ; empty list represented with ()
 
 
 (reverse (list 1 4 9 16 25)) ;(25 16 9 4 1)
 
+; Use this notation to write a procedure same-parity that takes one or more integers and returns a list 
+; of all the arguments that have the same even-odd parity as the ﬁrst argument.
+
+(define (same-parity x . y)
+	(define (same-parity-helper x y result)
+		(if (null? y) ; base case
+			(cons x (reverse result))
+			(if (even? x)
+				(if (even? (car y))
+					(same-parity-helper	x (cdr y) (cons (car y) result)) ; both even
+					(same-parity-helper	x (cdr y) result) ; x is even & (car y) is odd
+					)
+				(if (odd? (car y))
+					(same-parity-helper	x (cdr y) (cons (car y) result)) ; both odd
+					(same-parity-helper	x (cdr y) result) ; x is odd & (car y) is even
+				)
+			)
+		)
+	)
+	(same-parity-helper x y ()))
+
+(same-parity 1 2 3 4 5 6 7) ;(1 3 5 7) 
+(same-parity 2 3 4 5 6 7) ;(2 4 6)
 
 
