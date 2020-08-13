@@ -340,7 +340,9 @@ one-through-four ;(1 2 3 4)
 		(if (not (null? items)) 
 			(if (not (list? (car items))) 
 				(fringe-helper (cdr items) (cons (car items) returned-items)) ; base case
-				(fringe-helper (car items) returned-items) ; recursive step
+				(append (fringe-helper (car items) returned-items) 
+						(fringe-helper (cdr items) returned-items)) ; recursive step
+
 			)
 			(reverse returned-items); end of list
 		)
@@ -348,9 +350,9 @@ one-through-four ;(1 2 3 4)
 	(fringe-helper items ())
 )
 
-(define x (list (list 1 2 3 4) (list 3 4))) 
+(define x (list (list 1 2 3 4) (list 5 6))) 
 (fringe x) ; (1 2 3 4)
 
 ; fringe procedure is correctly recursing deep in the tree and giving all leaves, but only for the
-; innermost list that it encounters. I need to find a way to overcome this using some sort of accumulator
+; first innermost list that it encounters. I need to find a way to overcome this using some sort of accumulator
 ; variable.
