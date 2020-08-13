@@ -45,6 +45,10 @@ As we have seen, pairs provide a primitive “glue” that we can use to constru
 
 The ability to create pairs whose elements are pairs is the essence of list structure’s importance as a representational tool. **We refer to this ability as the closure property of cons.** In general, an operation for combining data objects satisﬁes the closure property if the results of combining things with that operation can themselves be combined using the same operation. Closure is the key to power in any means of combination because it permits us to create hierarchical structures—structures made up of parts, which themselves are made up of parts, and so on.
 
+![alt text](./images/tree.png)
+
+The elements of a sequence are like the branches of the tree, and elements that are themselves sequences are subtrees. Recursion is a natural tool for dealing with tree structures, since we can often reduce operations on trees to operations on their branches, which reduce in turn to operations on the branches of the branches, and so on, until we reach the leaves of the tree.
+
 
 # Important links
 
