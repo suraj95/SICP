@@ -254,7 +254,7 @@ one-through-four ;(1 2 3 4)
 				(if (even? (car y))
 					(same-parity-helper	x (cdr y) (cons (car y) result)) ; both even
 					(same-parity-helper	x (cdr y) result) ; x is even & (car y) is odd
-					)
+				)
 				(if (odd? (car y))
 					(same-parity-helper	x (cdr y) (cons (car y) result)) ; both odd
 					(same-parity-helper	x (cdr y) result) ; x is odd & (car y) is even
@@ -267,4 +267,90 @@ one-through-four ;(1 2 3 4)
 (same-parity 1 2 3 4 5 6 7) ;(1 3 5 7) 
 (same-parity 2 3 4 5 6 7) ;(2 4 6)
 
+; One extremely useful operation is to apply some transformation to each element in a list and 
+; generate the list of results. For instance, the following procedure scales each number in a list 
+; by a given factor:
 
+(define (scale-list items factor) 
+	(if (null? items) 
+		() ; nil gave unbound error, so replaced it with empty list.
+	(cons (* (car items) factor) 
+(scale-list (cdr items) factor)))) 
+
+(scale-list (list 1 2 3 4 5) 10) ;(10 20 30 40 50)
+
+; We can abstract this general idea and capture it as a common pattern expressed as a higher-order 
+; procedure, just as in Section 1.3. The higher-order procedure here is called map. map takes as 
+; arguments a procedure of one argument and a list, and returns a list of the results produced 
+; by applying the procedure to each element in the list—
+
+(define (map proc items) 
+	(if (null? items)
+		() 
+		(cons (proc (car items)) 
+			(map proc (cdr items))))) 
+
+(map abs (list -10 2.5 -11.6 17)) ; (10 2.5 11.6 17) 
+(map (lambda (x) (* x x)) (list 1 2 3 4)) ; (1 4 9 16)
+
+; Now we can give a new deﬁnition of scale-list in terms of map:
+
+(define (scale-list-map items factor) 
+	(map (lambda (x) (* x factor)) items))
+
+(scale-list-map (list 1 2 3 4 5) 10) ;(10 20 30 40 50)
+
+; Similarly, we can define a function square-list:
+
+(define (square-list items) 
+	(if (null? items) 
+		() 
+		(cons (square (car items)) 
+			(square-list(cdr items)))))
+
+(square-list (list 1 2 3 4)) ; (1 4 9 16)
+
+; We can also use map procedure in the same way
+
+(define (square-list-map items) 
+	(map square items))
+
+(square-list-map (list 1 2 3 4)) ; (1 4 9 16)
+
+; Modify your reverse procedure of Exercise 2.18 to produce a deep-reverse procedure that takes a 
+; list as argument and returns as its value the list with its elements reversed and with all sublists 
+; deep-reversed as well. For example,
+
+(define (deep-reverse items)
+	(define (deep-reverse-helper items reversed-items)
+		(if (null? items)
+			reversed-items
+			(deep-reverse-helper (cdr items) (cons (reverse (car items)) reversed-items))))
+	(deep-reverse-helper items ())) ; empty list represented with ()
+
+(define x (list (list 1 2) (list 3 4)))
+(reverse x) ; ((3,4) (1,2))
+(deep-reverse x) ; ((4,3) (2,1))
+
+; Write a procedure fringe that takes as argument a tree (represented as a list) and returns a list 
+; whose elements are all the leaves of the tree arranged in left-to-right order. 
+
+(define (fringe items)
+	(define (fringe-helper items returned-items)
+		(if (not (null? items)) 
+			(if (not (list? (car items))) 
+				(fringe-helper (cdr items) (cons (car items) returned-items)) ; base case
+				(fringe-helper (car items) returned-items) ; recursive step
+			)
+			(reverse returned-items); end of list
+		)
+	)
+	(fringe-helper items ())
+)
+
+(define x (list (list 1 2 3 4) (list 3 4))) 
+(fringe x) ; (1 2 3 4)
+
+; fringe procedure is correctly recursing deep in the tree and giving all leaves, but only for the
+; innermost list that it encounters. I need to find a way to overcome this using some sort of accumulator
+; variable.
