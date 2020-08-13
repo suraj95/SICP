@@ -351,8 +351,4 @@ one-through-four ;(1 2 3 4)
 )
 
 (define x (list (list 1 2 3 4) (list 5 6))) 
-(fringe x) ; (1 2 3 4)
-
-; fringe procedure is correctly recursing deep in the tree and giving all leaves, but only for the
-; first innermost list that it encounters. I need to find a way to overcome this using some sort of accumulator
-; variable.
+(fringe x) ; (1 2 3 4 5 6)
