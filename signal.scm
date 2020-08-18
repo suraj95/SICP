@@ -47,14 +47,13 @@
 ; Now we can reformulate sum-odd-squares and even-fibs as in the signal-ﬂow diagrams.
 
 (define (sum-odd-squares tree)
-	(accumulate 
-		+ 0 (map square (filter odd? (enumerate-tree tree)))))
+	(accumulate + 0 (map square (filter odd? (enumerate-tree tree)))))
 
 (define (even-fibs n)
 	(accumulate cons () (filter even? (map fib (enumerate-interval 0 n))))) ; nil replaced by ()
 
 
-; we can reuse pieces from the sum-odd-squares and even-fibs procedures 
+; We can reuse pieces from the sum-odd-squares and even-fibs procedures 
 ; in a program that constructs a list of the squares of the ﬁrst n + 1 Fibonacci numbers
 
 (load "source.scm") ; for fib procedure
@@ -66,4 +65,12 @@
 		(map square (map fib (enumerate-interval 0 n))))) 
 
 (list-fib-squares 10) ; (0 1 1 4 9 25 64 169 441 1156 3025)
+
+; We can rearrange the pieces and use them in computing the product of the squares 
+; of the odd integers in a sequence
+
+(define (product-of-squares-of-odd-elements sequence) 
+	(accumulate * 1 (map square (filter odd? sequence)))) 
+
+(product-of-squares-of-odd-elements (list 1 2 3 4 5)) ; 225
 
