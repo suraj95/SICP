@@ -352,3 +352,48 @@ one-through-four ;(1 2 3 4)
 
 (define x (list (list 1 2 3 4) (list 5 6))) 
 (fringe x) ; (1 2 3 4 5 6)
+
+; Just as map is a powerful abstraction for dealing with sequences, map together with recursion is a 
+; powerful abstraction for dealing with trees. 
+
+(define (scale-tree tree factor) 
+	(cond 	((null? tree) ()) 
+			((not (pair? tree)) (* tree factor)) 
+			(else (cons 	(scale-tree (car tree) factor) 
+						(scale-tree (cdr tree) factor))))) 
+
+(scale-tree (list 1 (list 2 (list 3 4) 5) (list 6 7)) 10) ; (10 (20 (30 40) 50) (60 70))
+
+; Another way to implement scale-tree is to regard the tree as a sequence of sub-trees and use map. 
+
+(define (scale-tree-map tree factor)
+	(map 	(lambda (sub-tree) 
+				(if 	(pair? sub-tree) 
+						(scale-tree sub-tree factor) (* sub-tree factor)
+				)
+			)
+	tree))
+
+(scale-tree-map (list 1 (list 2 (list 3 4) 5)) 10) ; (10 (20 (30 40) 50))
+
+; Deﬁne a procedure square-tree analogous to the square-list procedure of Exercise 2.21.
+
+(define (square-tree tree) 
+	(cond 	((null? tree) ()) 
+			((not 	(pair?	tree)) (square tree)) 
+			(else 	(cons 	(square-tree (car tree)) 
+							(square-tree (cdr tree))))))
+
+(square-tree (list 1 (list 2 (list 3 4) 5) (list 6 7))) ; (1 (4 (9 16) 25) (36 49))
+
+(define (square-tree-map tree)
+	(map 	(lambda (sub-tree)
+				(if 	(pair? sub-tree)
+						(square-tree-map sub-tree) (square sub-tree)
+
+				)
+			)
+	tree))
+
+(square-tree-map (list 1 (list 2 (list 3 4) 5) (list 6 7))) ; (1 (4 (9 16) 25) (36 49))
+
