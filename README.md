@@ -49,6 +49,13 @@ The ability to create pairs whose elements are pairs is the essence of list stru
 
 The elements of a sequence are like the branches of the tree, and elements that are themselves sequences are subtrees. Recursion is a natural tool for dealing with tree structures, since we can often reduce operations on trees to operations on their branches, which reduce in turn to operations on the branches of the branches, and so on, until we reach the leaves of the tree.
 
+After we are done working, we type the following command to close Scheme
+
+	(quit)
+
+Due to some reason, even after we close scheme, some background processes are still running, so we have to explicitly terminate them using the following command. 
+
+	kill $(ps -e | grep scheme | awk '{print $1}')
 
 # Important links
 
