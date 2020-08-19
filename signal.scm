@@ -88,15 +88,34 @@
 
 ; map applies a given procedure to every item in list to construct a new list (square-list, scale-list)
 ; that gives us a hint that cons will be needed
-(accumulate (lambda (x y) (cons (p x) y)) nil sequence) 
+; answer: (accumulate (lambda (x y) (cons (p x) y)) nil sequence) 
 
 ; 2. accumulation is done from bottom up (seq2 is initial and seq1 is sequence in base case)
-(accumulate cons seq2 seq1) ; (1 2 (3 4 (5 6)) 5 6 (7 8 (9 10)))
+; answer: (accumulate cons seq2 seq1) ; (1 2 (3 4 (5 6)) 5 6 (7 8 (9 10)))
 
 ; 3. op will have to be defined in terms of lambda. Addition operation adds the elements 
 ; but we're supposed to count them
-(accumulate (lambda (x y) (+ 1 y)) 0 sequence) 
+; answer: (accumulate (lambda (x y) (+ 1 y)) 0 sequence) 
 
 
+; Exercise 2.35: Redeﬁne count-leaves from Section 2.2.2 as an accumulation:
 
+(define (count-leaves x)
+	(cond ((null? x) 0) 
+	((not (pair? x)) 1) 
+	(else (+ 	(count-leaves (car x)) 
+			(count-leaves (cdr x))))))
+
+
+;  the procedure enumerate-tree saves us the complexity of writing our own tree-traversal and counting nodes
+(define (count-leaves-accumulate t) 
+	(accumulate + 0 (map (lambda (x) 1) (enumerate-tree t))))
+
+
+ (define x (cons (list 1 2) (list 3 4)))
+ (define y (list 1 (list 2 3) (cons (list 4 5) (list 6 7))))
+
+ (count-leaves x) ; 4
+
+ (count-leaves-accumulate x) ; 4
 
