@@ -1,5 +1,5 @@
-; The key to organizing programs so as to more clearly reﬂect the signalﬂow structure 
-; is to concentrate on the “signals” that ﬂow from one stage in the process to the next.
+; The key to organizing programs so as to more clearly reﬂect the signal-ﬂow structure 
+; is to concentrate on the "signals" that ﬂow from one stage in the process to the next.
 
 ; Filtering a sequence to select only those elements that satisfy a given predicate is accomplished by
 
@@ -73,4 +73,30 @@
 	(accumulate * 1 (map square (filter odd? sequence)))) 
 
 (product-of-squares-of-odd-elements (list 1 2 3 4 5)) ; 225
+
+
+; Exercise 2.33: Fill in the missing expressions to complete the list manipulation deﬁnitions 
+
+(define seq1 (list 1 2 (list 3 4 (list 5 6)))) ; (1 2 (3 4 (5 6)))
+(define seq2 (list 5 6 (list 7 8 (list 9 10)))) ; (5 6 (7 8 (9 10)))
+
+
+; 1. The lambda defined here will be applied the following way in accumulate procedure (replace op by lambda)
+; 
+; (op	(car sequence) 
+;			(accumulate op initial (cdr sequence)))
+
+; map applies a given procedure to every item in list to construct a new list (square-list, scale-list)
+; that gives us a hint that cons will be needed
+(accumulate (lambda (x y) (cons (p x) y)) nil sequence) 
+
+; 2. accumulation is done from bottom up (seq2 is initial and seq1 is sequence in base case)
+(accumulate cons seq2 seq1) ; (1 2 (3 4 (5 6)) 5 6 (7 8 (9 10)))
+
+; 3. op will have to be defined in terms of lambda. Addition operation adds the elements 
+; but we're supposed to count them
+(accumulate (lambda (x y) (+ 1 y)) 0 sequence) 
+
+
+
 
