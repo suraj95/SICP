@@ -20,3 +20,11 @@
 ; cadr takes car of a cdr
 (cadr '((x1 x2) (y1 y2))) ; (y1 y2)
 
+
+(define (equal? list1 list2)
+	(cond ((null? (append list1 list2)) true) ; append both lists and check if it is null (means both are null)
+		( (not (eq? (car list1) (car list2))) false)
+		(else (equal? (cdr list1) (cdr list2)))))
+
+(equal? '(this is a list) '(this is a list)) ;true
+(equal? '(this is a list) '(this is not a list)) ;false
