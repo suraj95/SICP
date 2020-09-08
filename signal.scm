@@ -107,7 +107,7 @@
 			(count-leaves (cdr x))))))
 
 
-;  the procedure enumerate-tree saves us the complexity of writing our own tree-traversal and counting nodes
+;  The procedure enumerate-tree saves us the complexity of writing our own tree-traversal and counting nodes
 (define (count-leaves-accumulate t) 
 	(accumulate + 0 (map (lambda (x) 1) (enumerate-tree t))))
 

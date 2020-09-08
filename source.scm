@@ -1,33 +1,33 @@
 ; The comment character is ; and anything following that on the line will be ignored. 
 
-(+ 137 349) ;486
-(- 1000 334) ;666
-(* 5 99) ;495
+(+ 137 349) ; 486
+(- 1000 334) ; 666
+(* 5 99) ; 495
 
-(+ 21 35 12 7) ;75
-(* 25 4 12) ;1200
+(+ 21 35 12 7) ; 75
+(* 25 4 12) ; 1200
 
 (define size 2)
 (define pi 3.14159) 
 (define radius 10)
 
-(* (+ 2 (* 4 6)) (+ 3 5 7)) ;390
+(* (+ 2 (* 4 6)) (+ 3 5 7)) ; 390
 
 (define (square x) (* x x))
 (define (cube x) (* x x x))
 (define (inc n) (+ n 1))
 
-(square 2) ;21
-(square 21) ;441
-(square (+ 2 5)) ;49
+(square 2) ; 21
+(square 21) ; 441
+(square (+ 2 5)) ; 49
 
 (define (sum-of-squares x y) (+ (square x) (square y)))
 
-(sum-of-squares 3 4) ;25
+(sum-of-squares 3 4) ; 25
 
 (define (f a) (sum-of-squares (+ a 1) (* a 2)))
 
-(f 5) ;136
+(f 5) ; 136
 
 (define (abs x) 
 	(cond ((> x 0) x)
@@ -98,7 +98,7 @@
 ; a = 1 + xy, b = 1 − y, f(x,y) = xa^2 + yb + ab
 
 
-; using helper function
+; Using helper function
 (define (f x y)
 	(define (f-helper a b) 
 		(+ (* x (square a)) 
@@ -107,7 +107,7 @@
 	(f-helper (+ 1 (* x y)) 
 		(- 1 y)))
 
-; using lambda
+; Using lambda
 (define (f x y) 
 	((lambda (a b)
 		(+ 	(* x (square a)) 
@@ -116,7 +116,7 @@
 		(+ 1 (* x y)) 
 		(- 1 y)))
 
-; using let
+; Using let
 (define (f x y)
 	(let 	((a (+ 1 (* x y))) 
 		(b (- 1 y))) 
@@ -124,7 +124,7 @@
 		(* y b) 
 		(* a b))))
 
-; let allows one to bind variables as locally as possible to where they are to be used.
+; The let procedure allows one to bind variables as locally as possible to where they are to be used.
 
 (define x 5)
 
@@ -132,7 +132,7 @@
 	(+ x (* x 10))) 
 	x)
 
-; value of x is defined 5, but the value of x in the body is 3 and
+; The value of x is defined 5, but the value of x in the body is 3 and
 ; and therefor value of the expression here is 38
 
 
@@ -156,7 +156,7 @@
 (define (linear-combination a b x y) 
 	(add (mul a x) (mul b y)))
 
-; where add and mul are not the primitive procedures + and * but rather more complex things 
+; Here add and mul are not the primitive procedures + and * but rather more complex things 
 ; that will perform the appropriate operations for whatever kinds of data we pass in as the 
 ; arguments a, b, x, and y. If not defined, they will give error.
 
@@ -173,8 +173,8 @@
 
 (define x (cons 1 2)) 
 
-(car x) ;1 
-(cdr x) ;2
+(car x) ; 1 
+(cdr x) ; 2
 
 ; Given a pair, we can extract the parts using the primitive procedures car and cdr.
 
@@ -188,16 +188,16 @@
 ; Data objects constructed from pairs are called list-structured data.
 
 (define one-through-four (list 1 2 3 4)) 
-one-through-four ;(1 2 3 4)
+one-through-four ; (1 2 3 4)
 
 ; We can think of car as selecting the ﬁrst item in the list, 
 ; and of cdr as selecting the sublist consisting of all but the ﬁrst item.
 
-(car one-through-four) ;1 
-(cdr one-through-four) ;(2 3 4) 
-(car (cdr one-through-four)) ;2 
-(cons 10 one-through-four) ;(10 1 2 3 4) 
-(cons 5 one-through-four) ;(5 1 2 3 4) 
+(car one-through-four) ; 1 
+(cdr one-through-four) ; (2 3 4) 
+(car (cdr one-through-four)) ; 2 
+(cons 10 one-through-four) ; (10 1 2 3 4) 
+(cons 5 one-through-four) ; (5 1 2 3 4) 
 
 ; The procedure list-ref takes as arguments a list and a number n and returns the n-th item of the list.
 
@@ -213,11 +213,11 @@ one-through-four ;(1 2 3 4)
 
 (define odds (list 1 3 5 7))
 
-(length odds);4
+(length odds); 4
 
 (define squares (list 1 4 9 16 25)) 
 
-(length squares);5
+(length squares); 5
 
 ; To append lists, if list1 is the empty list, then the result is just list2.
 ; Otherwise, append the cdr of list1 and list2, and cons the car of list1 onto the result:
@@ -264,8 +264,8 @@ one-through-four ;(1 2 3 4)
 	)
 	(same-parity-helper x y ()))
 
-(same-parity 1 2 3 4 5 6 7) ;(1 3 5 7) 
-(same-parity 2 3 4 5 6 7) ;(2 4 6)
+(same-parity 1 2 3 4 5 6 7) ; (1 3 5 7) 
+(same-parity 2 3 4 5 6 7) ; (2 4 6)
 
 ; One extremely useful operation is to apply some transformation to each element in a list and 
 ; generate the list of results. For instance, the following procedure scales each number in a list 
@@ -277,7 +277,7 @@ one-through-four ;(1 2 3 4)
 	(cons (* (car items) factor) 
 (scale-list (cdr items) factor)))) 
 
-(scale-list (list 1 2 3 4 5) 10) ;(10 20 30 40 50)
+(scale-list (list 1 2 3 4 5) 10) ; (10 20 30 40 50)
 
 ; We can abstract this general idea and capture it as a common pattern expressed as a higher-order 
 ; procedure, just as in Section 1.3. The higher-order procedure here is called map. map takes as 
